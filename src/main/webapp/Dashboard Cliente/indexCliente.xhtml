@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="../Codigo css/Cliente.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <header>
+        <div class="navbar">
+            
+     
+             <a class="logo" href="INICIO.PHP">
+                 <img src="../IMAGENES/descarga.png"  alt="logo de la compañia" ></img> 
+                 
+        </a>
+        <ul class="links">
+        <h:form>
+            <h:commandButton value="INICIO"  action="Inicio" styleClass="button" />
+            <h:commandButton value="QUIENES SOMOS" action="Quienes" styleClass="button" />
+            <h:commandButton value="RUTAS DE RECOLECCION" action="Ruta" styleClass="button" />
+            <h:commandButton value="NORMALIDAD Y LEGALIDAD"  action="Documento" styleClass="button" />
+            <h:commandButton value="TIENDA SOCIAL" action="Tienda" styleClass="button" />
+            <h:commandButton value="PQRS" action="Pqrs" styleClass="button" />
+            <h:commandButton value="INGRESAR" action="Login" styleClass="button" />
+            
+
+        </h:form>
+            </ul>
+              <div class="toggle_btn">
+                <i class="fas fa-bars" style="color: #2d3543;"></i>
+            </div>
+        </div>
+        <h:form>
+        <div class="dropdown_menu">
+            <li>  <h:commandButton value="INICIO"  action="Inicio" styleClass="button" /> </li>
+            <li> <h:commandButton value="QUIENES SOMOS" action="Quienes" styleClass="button" /> </li>
+            <li>  <h:commandButton value="RUTAS DE RECOLECCION" action="Ruta" styleClass="button" /> </li>
+            <li> <h:commandButton value="NORMALIDAD Y LEGALIDAD"  action="Documento" styleClass="button" /> </li>
+            <li>  <h:commandButton value="TIENDA SOCIAL" action="page2" styleClass="button" /> </li>
+            <li> <h:commandButton value="PQRS" action="Pqrs" styleClass="button" /> </li>
+            <li> <h:commandButton value="INGRESAR" action="Login" styleClass="button" /> </li>
+           
+        </div>
+            </h:form>
+    </header>
+        
+        <script>
+            //botones 
+            const toggleBtn = document.querySelector('.toggle_btn');
+            const toggleBtnIcon = document.querySelector('.toggle_btn i');
+            const dropDownmenu = document.querySelector('.dropdown_menu');
+
+            toggleBtn.addEventListener('click', function (isopen) {
+                dropDownmenu.classList.toggle('show');
+                isopen = dropDownmenu.classList.contains('show');
+                toggleBtnIcon.classList = isopen
+                        ? 'fa-solid fa-xmark'
+                        : 'fa-solid fa-bars';
+            });
+        </script>
+        
+        
+    </h:body>
+</html>

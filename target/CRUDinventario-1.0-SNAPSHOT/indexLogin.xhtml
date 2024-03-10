@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login</title>
+
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f2f2f2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-image: url('./imagenes/Background.jpg');
+                background-size: cover;
+                background-position: center;
+            }
+
+            form {
+                width: 300px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            label {
+                display: block;
+                margin: 10px 0 5px;
+                color: #555;
+            }
+
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .button {
+                background-color: #ff8800;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            .button:hover {
+                background-color: #e67600;
+            }
+
+            .contenedor {
+                text-align: center;
+            }
+
+            p {
+                margin-top: 20px;
+            }
+
+            .link {
+                color: #007bff;
+                text-decoration: none;
+            }
+        </style>
+
+    </h:head>
+    <h:body>
+
+
+
+        <script>
+            //botones 
+            const toggleBtn = document.querySelector('.toggle_btn');
+            const toggleBtnIcon = document.querySelector('.toggle_btn i');
+            const dropDownmenu = document.querySelector('.dropdown_menu');
+
+            toggleBtn.addEventListener('click', function (isopen) {
+                dropDownmenu.classList.toggle('show');
+                isopen = dropDownmenu.classList.contains('show');
+                toggleBtnIcon.classList = isopen
+                        ? 'fa-solid fa-xmark'
+                        : 'fa-solid fa-bars';
+            });
+        </script>
+
+        <h:form>
+            <section class="LOGASO">
+                <div class="login-box">
+                    <h2>BIENVENIDO</h2>
+                    <div class="user-box">
+                        <h:outputLabel for="email" value="Correo electrónico"/>
+                        <h:inputText id="email" value="#{controllerLogin.usuario.email}"/>
+
+                    </div>
+                    <div class="user-box">
+                        <h:outputLabel for="password" value="Contraseña" />
+                        <h:inputSecret id="password" value="#{controllerLogin.usuario.contraseña}" />
+
+                    </div>
+
+                    <div class="user-box">
+                        <a href="#" styleClass="button-link">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <h:commandButton value="Iniciar sesión" action="#{controllerLogin.iniciarSesion()}" />
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <script>
+                // Limpiar mensajes después de mostrar la alerta
+                window.onload = function () {
+                    var messages = document.getElementById('messages');
+                    if (messages.children.length > 0) {
+                        alert(messages.children[0].innerText);
+                        messages.innerHTML = ''; // Limpiar mensajes
+                    }
+                };
+            </script>
+            <h:messages id="messages" globalOnly="true" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 15px; border-radius: 50px; text-align: center; font-size: 22px;   max-width: 600px; margin: 0 auto;  text-align: center; font-family: 'Playpen Sans', cursive;
+                        "  />
+
+        </h:form>
+    </h:body>
+</html>

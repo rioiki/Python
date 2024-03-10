@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        body {
+            background:
+                linear-gradient(
+                rgba(246,247,249,0.8),
+                rgba(246,247,249,0.8)),
+                url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/sky-clouds-cloudy-mountain.jpg) no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #1059FF;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0F4FE6;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <form id="registro-form" onsubmit="return registrarUsuario()">
+        <h2>Registro</h2>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <div id="mensaje" class="message" style="display: none;"></div>
+
+    <script>
+        function registrarUsuario() {
+            // Aquí se puede agregar la lógica para enviar los datos del formulario y registrar al usuario
+
+            // Mostrar el mensaje de registro exitoso
+            var mensaje = document.getElementById("mensaje");
+            mensaje.innerText = "¡Registrado exitosamente!";
+            mensaje.style.display = "block";
+
+            // Redireccionar al index después de 3 segundos
+            setTimeout(function() {
+                window.location.href = "index.xhtml";
+            }, 3000);
+
+            // Evitar que el formulario se envíe
+            return false;
+        }
+    </script>
+</body>
+</html>

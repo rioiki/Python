@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="msj" />
+        <h:form id="NUevo">
+
+
+
+            <p:fieldset legend="Nuevo" toggleable="true">
+                <p:panelGrid columns="1">
+                    <p:commandButton styleClass="boton-Nuevo"  value="Nueva Categoria" oncomplete="PF('valor').show();"/>                           
+                </p:panelGrid>               
+            </p:fieldset> 
+        </h:form>
+        <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="Nueva Categoria" resizable="false">
+
+            <p:ajax event="close" listener="#{controllerCategorias.limpiar()}" update="pe"/>
+            <h:form id="pe">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Ingrese su nueva categoria" />
+                    <p:inputText value="#{controllerCategorias.categoria.nombreCategoria}" title="Categoria" required="true" requiredMessage="Categoria no ingresada. Por favor ingrese el nombre de la categoria." />
+
+
+                    <p:commandButton styleClass="boton-Nuevo"  value="Guardar" actionListener="#{controllerCategorias.guardar()}"  oncomplete="PF('valor').hide();"  
+                                     update=":Datos pe :msj"/>                   
+
+                    <p:commandButton styleClass="boton-actualizar"  value="Actualizar"   actionListener="#{controllerCategorias.actualizar()}" oncomplete="PF('valor').hide();"  
+                                     update=":Datos pe :msj"/>
+
+                </p:panelGrid>
+
+            </h:form>       
+        </p:dialog>
+
+
+        <h:form id="Datos">
+            <p:fieldset legend ="Datos" toggleable="true" styleClass="transparent-fieldset">
+                <p:dataTable value="#{controllerCategorias.listacategoria}" var="ron" styleClass="miTabla" 
+                             emptyMessage="No hay categorías de este tipo" widgetVar="TablaCategoria" 
+                             filteredValue="#{controllerCategorias.buscadorCategorias}">
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar"/>
+                            <p:inputText id="globalFilter" onkeyup="PF('TablaCategoria').filter()"
+                                         style="width: 150px; margin: 10px; " placeholder="Buscador"
+                                         styleClass="miEstiloDeBorde"/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="Categoria ID">
+                        <h:outputText value="#{ron.IDCategoria}" />
+                    </p:column>
+                    <p:column headerText="Nombre Categoria">
+                        <h:outputText value="#{ron.nombreCategoria}" />
+                    </p:column>
+                    <p:column headerText="Eliminar" styleClass="columna-centrada">
+                        <p:commandButton value="ELIMINAR"  styleClass="boton-eliminar" actionListener="#{controllerCategorias.eliminar(ron)}" 
+                                         update=":Datos :msj" onclick="return confirm('¿Estás seguro de que deseas eliminar esta Categoria?')"/>
+                    </p:column>
+
+                    <p:column headerText="Actializar">
+                        <p:commandButton value="Actualizar" actionListener="#{controllerCategorias.Cargardatos(ron)}" 
+                                         update=":pe " oncomplete="PF('valor').show();"/>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>        
+
+    </h:body>           
+
+
+</html>
+
